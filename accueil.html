@@ -3,144 +3,195 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FamiliScore — Points, défis et récompenses en famille</title>
-    <!-- Chargement de Tailwind CSS pour un rendu moderne et rapide -->
-    <script src="https://tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        darkBg: '#0A0A0C',
-                        panelBg: '#121216',
-                        neonPurple: '#8B5CF6',
-                        neonLime: '#A3E635'
-                    }
-                }
+    
+    <title>FamiliScore - L'application d'entraide et d'autonomie en famille</title>
+    <meta name="description" content="Découvrez FamiliScore, l'application d'entraide et d'autonomie en famille. Devoirs, coups de main et petites victoires du quotidien transformés en points et récompenses.">
+    <meta name="keywords" content="application famille, autonomie enfants, éducation positive, gestion des points, motivation enfants, devoirs, tâches ménagères">
+    
+    <meta name="google-site-verification" content="OVXMJjajNffteD5Q">
+    
+    <meta property="og:title" content="FamiliScore - Autonomie et entraide en famille">
+    <meta property="og:description" content="Transformez les devoirs et les coups de main du quotidien en points et en récompenses !">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://familiscore.github.io">
+
+    <style>
+        :root {
+            --bg-color: #0A0A0C;
+            --text-color: #FFFFFF;
+            --text-muted: #A1A1AA;
+            --primary-purple: #8B5CF6;
+            --primary-purple-hover: #7C3AED;
+            --accent-lime: #10B981;
+            --card-bg: #121216;
+            --card-border: #27272A;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        header {
+            margin-bottom: 2.5rem;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #FFFFFF 0%, var(--primary-purple) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
+        }
+
+        .concept {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 2.5rem auto;
+        }
+
+        .cta-container {
+            margin-bottom: 3rem;
+        }
+
+        .btn-neon {
+            display: inline-block;
+            background-color: var(--primary-purple);
+            color: var(--text-color);
+            font-size: 1.25rem;
+            font-weight: 700;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-neon:hover {
+            background-color: var(--primary-purple-hover);
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.8);
+            transform: translateY(-2px);
+        }
+
+        .install-section {
+            text-align: left;
+            margin-top: 1rem;
+        }
+
+        .install-title {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-color);
+        }
+
+        .install-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .install-grid {
+                grid-template-columns: 1fr 1fr;
             }
         }
-    </script>
-    <style>
-        /* Effet de lueur violette identique à votre maquette */
-        .neon-glow {
-            box-shadow: 0 0 20px 2px rgba(139, 92, 246, 0.4);
-            transition: all 0.3s ease;
+
+        .install-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
         }
-        .neon-glow:hover {
-            box-shadow: 0 0 30px 6px rgba(139, 92, 246, 0.6);
-            transform: scale(1.02);
+
+        .install-card h3 {
+            font-size: 1.15rem;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.55rem;
         }
-        /* Animation d'apparition de la pop-up */
-        .modal-animate {
-            animation: fadeIn 0.25s ease-out forwards;
+
+        .install-card.android h3 {
+            color: #34D399; /* Vert fluo / lime */
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
+
+        .install-card.iphone h3 {
+            color: var(--primary-purple);
+        }
+
+        .install-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        footer {
+            margin-top: 3rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-align: center;
         }
     </style>
 </head>
-<body class="bg-darkBg text-gray-200 font-sans min-h-screen flex flex-col justify-between items-center p-4">
+<body>
 
-    <!-- Zone principale (Spacer supérieur pour centrer parfaitement comme l'image) -->
-    <div class="flex-grow flex items-center justify-center w-full max-w-md">
-        
-        <!-- Boîtier de la carte principale -->
-        <div class="bg-[#111115] border border-gray-800/60 rounded-3xl p-8 text-center w-full shadow-2xl relative overflow-hidden">
-            
-            <!-- Icône de Trophée Dorée en Émoji géant (Super propre sur mobile) -->
-            <div class="text-5xl mb-6 drop-shadow-md select-none">🏆</div>
-            
-            <!-- Titre avec dégradé Neon moderne -->
-            <h1 class="text-4xl font-extrabold tracking-tight mb-4 bg-gradient-to-r from-blue-400 via-indigo-300 to-emerald-400 bg-clip-text text-transparent">
-                FamiliScore
-            </h1>
-            
-            <!-- Description de l'application -->
-            <p class="text-gray-400 text-[15px] leading-relaxed mb-8 px-2">
-                L'application d'entraide et d'autonomie en famille entièrement <span class="text-neonLime font-semibold text-sm tracking-wide bg-neonLime/10 px-1.5 py-0.5 rounded">GRATUITE !</span> Devoirs, coups de main et petites victoires du quotidien deviennent des points et des récompenses !
-            </p>
-            
-            <!-- Bouton d'action principal -->
-            <button onclick="openInstallModal()" class="w-full bg-neonPurple text-white font-bold text-base uppercase tracking-wider py-4 px-6 rounded-2xl neon-glow uppercase">
-                Installer l'application
-            </button>
-            
+    <div class="container">
+        <header>
+            <h1>FamiliScore</h1>
+            <p class="concept">L'application d'entraide et d'autonomie en famille. Devoirs, coups de main et petites victoires du quotidien deviennent des points et des récompenses !</p>
+        </header>
+
+        <div class="cta-container">
+            <a href="https://lovable.app" target="_self" class="btn-neon">Ouvrir et Installer FamiliScore</a>
         </div>
+
+        <section class="install-section">
+            <h2 class="install-title">Comment installer l'application gratuitement ?</h2>
+            
+            <div class="install-grid">
+                <div class="install-card android">
+                    <h3>🤖 Sur Android (Chrome)</h3>
+                    <p>Cliquez sur le bouton violet ci-dessus. Attendez 2 secondes qu'un message vous propose d'installer l'application, ou cliquez sur les 3 petits points en haut à droite du navigateur puis sur 'Installer l'application'.</p>
+                </div>
+
+                <div class="install-card iphone">
+                    <h3>🍎 Sur iPhone (Safari)</h3>
+                    <p>Cliquez sur le bouton violet ci-dessus. Une fois sur l'application, appuyez sur le bouton 'Partager' (le carré avec une flèche vers le haut) tout en bas de votre écran, puis faites défiler et cliquez sur 'Sur l'écran d'accueil'.</p>
+                </div>
+            </div>
+        </section>
     </div>
 
-    <!-- Pied de page -->
-    <footer class="text-center text-xs text-gray-600 font-medium tracking-wide mt-8 mb-4">
-        © 2026 FamiliScore® par Noa Fagegaltié. Tous droits réservés.
+    <footer>
+        <p>&copy; 2026 FamiliScore. Tous droits réservés.</p>
     </footer>
 
-    <!-- FENÊTRE MODALE (Guide d'installation PWA caché par défaut) -->
-    <div id="installModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
-        <div class="bg-[#16161c] border border-gray-800 w-full max-w-sm rounded-3xl p-6 shadow-2xl modal-animate relative">
-            
-            <!-- En-tête de la pop-up -->
-            <div class="flex justify-between items-center border-b border-gray-800 pb-3 mb-4">
-                <h3 class="text-lg font-bold text-white flex items-center gap-2">
-                    📲 Pour l'installer pour de bon :
-                </h3>
-                <button onclick="closeInstallModal()" class="text-gray-500 hover:text-white text-xl font-bold p-1">&times;</button>
-            </div>
-
-            <!-- Étapes d'installation demandées -->
-            <div class="space-y-5 text-left text-sm text-gray-300">
-                
-                <!-- Bloc Android -->
-                <div class="bg-gray-900/50 p-3.5 rounded-xl border border-gray-800">
-                    <p class="font-bold text-neonLime flex items-center gap-1.5 mb-1">
-                        🤖 Si vous êtes sur Android (Chrome) :
-                    </p>
-                    <p class="leading-relaxed text-gray-400">
-                        Attendez 2 secondes, un message va vous proposer d'installer l'application, ou cliquez sur les <span class="text-white font-semibold">3 petits points</span> en haut à droite puis sur <span class="text-white font-semibold">"Installer l'application"</span>.
-                    </p>
-                </div>
-
-                <!-- Bloc iPhone -->
-                <div class="bg-gray-900/50 p-3.5 rounded-xl border border-gray-800">
-                    <p class="font-bold text-neonPurple flex items-center gap-1.5 mb-1">
-                        🍏 Si vous êtes sur iPhone (Safari) :
-                    </p>
-                    <p class="leading-relaxed text-gray-400">
-                        Appuyez sur le bouton <span class="text-white font-semibold">Partager</span> (le carré avec la flèche vers le haut) et cliquez sur <span class="text-white font-semibold">"Sur l'écran d'accueil"</span>.
-                    </p>
-                </div>
-
-            </div>
-
-            <!-- Bouton pour continuer vers le site -->
-            <button onclick="redirectToPWA()" class="mt-6 w-full bg-white text-darkBg font-bold py-3 rounded-xl transition hover:bg-gray-200">
-                Compris, j'y vais !
-            </button>
-        </div>
-    </div>
-
-    <!-- LOGIQUE JAVASCRIPT -->
-    <script>
-        const pwaUrl = "https://familiscore.lovable.app";
-        const modal = document.getElementById('installModal');
-
-        function openInstallModal() {
-            modal.classList.remove('hidden');
-        }
-
-        function closeInstallModal() {
-            modal.classList.add('hidden');
-        }
-
-        function redirectToPWA() {
-            window.location.href = pwaUrl;
-        }
-
-        // Fermer la modal si l'utilisateur clique en dehors de la boîte
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                closeInstallModal();
-            }
-        }
-    </script>
 </body>
 </html>
